@@ -1,0 +1,10 @@
+sceneSetups:
+- path: Assets/Scenes/ChatRoom.unity
+  isLoaded: 1
+  isActive: 1
+- path: Assets/Scenes/Lobby.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/ResultScreen.unity
+  isLoaded: 0
+  isActive: 0
