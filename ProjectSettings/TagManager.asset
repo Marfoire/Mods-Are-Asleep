@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Message
   - Moderator
+  - Dynamic Text
+  - Manager
   layers:
   - Default
   - TransparentFX

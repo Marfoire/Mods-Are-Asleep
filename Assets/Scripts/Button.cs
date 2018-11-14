@@ -17,25 +17,29 @@ public class Button : MonoBehaviour {
         
     }
 
-    private void OnMouseUp()
-    {
-        LoadState(); // calls load state when clicked
 
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            LoadState();
+        }
     }
+
 
     //load state just checks the button type and loads it's corresponding scene using conditionals
     public void LoadState()
     {
-        if (buttonType == "Chat")//if this button's type is game
+        if (buttonType == "MemeChat")//if this button's type is game
         {
+            print("b");
             SceneManager.LoadScene("ChatRoom", LoadSceneMode.Single);//it loads the game scene
         }
-        else if (buttonType == "Menu")//if this button's type is menu
+        else if (buttonType == "TextChat")//if this button's type is menu
         {
-            SceneManager.LoadScene("Menu", LoadSceneMode.Single);//it goes to the menu screen
+            SceneManager.LoadScene("AltChatRoom", LoadSceneMode.Single);//it goes to the menu screen
         }
-
-
     }
     
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -18,6 +19,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void PlayerConstructor(string givenName, Sprite givenPicture, GameObject memefab, ModeratorScript[] mods, ChatManagerScript cm)
     {
+        DontDestroyOnLoad(this);
         banDuration = 2;
         amIBanned = false;
         playerName = givenName;
@@ -75,8 +77,11 @@ public class PlayerScript : MonoBehaviour {
 
     private void Update()
     {
-        PostMeme();
-        UnBanCountdown();
+        if (SceneManager.GetActiveScene().name == "ChatRoom")
+        {
+            PostMeme();
+            UnBanCountdown();
+        }
     }
 
 

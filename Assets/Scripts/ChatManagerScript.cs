@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq;
 
@@ -31,37 +32,67 @@ public class ChatManagerScript : MonoBehaviour {
     // Use this for initialization
     void Awake () {
 
-        /*}
-
-        void OnSceneLoaded()
-        {*/
-
-        for (int i = 0; i < modArray.Length; i++)
+        DontDestroyOnLoad(this);
+        if (FindObjectsOfType(GetType()).Length > 1)
         {
-            GameObject mod = Instantiate(modPrefab, new Vector3(6, (i * -2.7f) + 13.2f), Quaternion.identity) as GameObject;
-            ModeratorScript script = mod.GetComponent<ModeratorScript>();
-            modArray[i] = script;
-
-            int randomNameValue = UnityEngine.Random.Range(0, playerNames.Length);
-            int randomPictureValue = UnityEngine.Random.Range(0, profilePictures.Length);
-
-            while (playerNames[randomNameValue] == null)
-            {
-                randomNameValue = UnityEngine.Random.Range(0, playerNames.Length);
-            }
-
-            while (profilePictures[randomPictureValue] == null)
-            {
-                randomPictureValue = UnityEngine.Random.Range(0, profilePictures.Length);
-            }
-
-            script.ModConstructor(playerNames[randomNameValue], profilePictures[randomPictureValue]);
-
-            Array.Clear(playerNames, randomNameValue, 1);
-            Array.Clear(profilePictures, randomPictureValue, 1);
-
+            Destroy(gameObject);
         }
 
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "ChatRoom")
+        {
+            for(int i = 0; i < GameObject.FindGameObjectsWithTag("Dynamic Text").Length; i++)
+            {
+                if (GameObject.FindGameObjectsWithTag("Dynamic Text")[i].name == "Timer")
+                {
+                    timerTextBox = GameObject.FindGameObjectsWithTag("Dynamic Text")[i];
+                }
+
+                if (GameObject.FindGameObjectsWithTag("Dynamic Text")[i].name == "BannedPlayersText")
+                {
+                    banListObject = GameObject.FindGameObjectsWithTag("Dynamic Text")[i];
+                }
+            }
+
+            for (int i = 0; i < modArray.Length; i++)
+            {
+                GameObject mod = Instantiate(modPrefab, new Vector3(6, (i * -2.7f) + 13.2f), Quaternion.identity) as GameObject;
+                ModeratorScript script = mod.GetComponent<ModeratorScript>();
+                modArray[i] = script;
+
+                int randomNameValue = UnityEngine.Random.Range(0, playerNames.Length);
+                int randomPictureValue = UnityEngine.Random.Range(0, profilePictures.Length);
+
+                while (playerNames[randomNameValue] == null)
+                {
+                    randomNameValue = UnityEngine.Random.Range(0, playerNames.Length);
+                }
+
+                while (profilePictures[randomPictureValue] == null)
+                {
+                    randomPictureValue = UnityEngine.Random.Range(0, profilePictures.Length);
+                }
+
+                script.ModConstructor(playerNames[randomNameValue], profilePictures[randomPictureValue]);
+
+                Array.Clear(playerNames, randomNameValue, 1);
+                Array.Clear(profilePictures, randomPictureValue, 1);
+
+            }
+        }
+        if(scene.name == "Lobby")
+        {
+
+        }
     }
 
     public void AddPlayer(GameObject player)
@@ -136,8 +167,11 @@ public class ChatManagerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        UpdateBanList();
-        UpdateTop10();
-        UpdateTimer();
+        if (SceneManager.GetActiveScene().name == "ChatRoom")
+        {
+            UpdateBanList();
+            UpdateTop10();
+            UpdateTimer();
+        }
 	}
 }
