@@ -33,12 +33,15 @@ public class Button : MonoBehaviour {
     {
         if (buttonType == "MemeChat")//if this button's type is game
         {
-            print("b");
             SceneManager.LoadScene("ChatRoom", LoadSceneMode.Single);//it loads the game scene
         }
         else if (buttonType == "TextChat")//if this button's type is menu
         {
             SceneManager.LoadScene("AltChatRoom", LoadSceneMode.Single);//it goes to the menu screen
+        }
+        else if (buttonType == "Lobby")//if this button's type is menu
+        {
+            SceneManager.LoadScene("Lobby", LoadSceneMode.Single);//it goes to the menu screen
         }
     }
     

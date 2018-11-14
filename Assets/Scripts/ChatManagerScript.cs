@@ -140,6 +140,12 @@ public class ChatManagerScript : MonoBehaviour {
         string minutes = Mathf.Floor((timeLeft) / 60).ToString("00");
         string seconds = Mathf.Floor(((timeLeft) % 60)).ToString("00");
         timerTextBox.GetComponent<TextMesh>().text = minutes + ":" + seconds;
+
+        if (timeLeft <= 0)
+        {
+            SceneManager.LoadScene("ResultScreen", LoadSceneMode.Single);
+        }
+
     }
 
     public void UpdateBanList()
