@@ -12,21 +12,6 @@ public class Button : MonoBehaviour {
 
     public string buttonType = "button"; // the string provided in inspector view determines where this button goes
 
-    // Use this for initialization
-    void Awake () {
-        
-    }
-
-
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            LoadState();
-        }
-    }
-
 
     //load state just checks the button type and loads it's corresponding scene using conditionals
     public void LoadState()

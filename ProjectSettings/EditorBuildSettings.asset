@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Lobby.unity
+    guid: 2ac15a49118a7cf4e808d7e90703bbc1
+  - enabled: 1
+    path: Assets/Scenes/ChatRoom.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/AltChatRoom.unity
+    guid: 8303dc5d846a1c84a858948511687156
+  - enabled: 1
+    path: Assets/Scenes/ResultScreen.unity
+    guid: 76a5d59e2c043ba4fab13b6265d0ea0a
   m_configObjects: {}

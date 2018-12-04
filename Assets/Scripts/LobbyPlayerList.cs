@@ -69,9 +69,6 @@ public class LobbyPlayerList : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(SceneManager.GetActiveScene().name == "Lobby")
-        {
             UpdatePlayerList();
-        }
 	}
 }
