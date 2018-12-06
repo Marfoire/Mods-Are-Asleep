@@ -119,7 +119,7 @@ namespace HappyFunTimes
         void StartPlayer(NetPlayer netPlayer, object data)
         {
             m_log.Info("Spawn Player");
-            GameObject gameObject = (GameObject)Instantiate(prefabToSpawnForPlayer);
+            GameObject gameObject = Instantiate(prefabToSpawnForPlayer);
             GetComponent<ChatManagerScript>().AddPlayer(gameObject);
             SpawnInfo spawnInfo = new SpawnInfo();
             spawnInfo.netPlayer = netPlayer;
@@ -129,7 +129,7 @@ namespace HappyFunTimes
 
         GameObject GetPrefab(int ndx)
         {
-            return (GameObject)Instantiate(prefabToSpawnForPlayer);
+            return Instantiate(prefabToSpawnForPlayer);
         }
 
         void StartNewPlayer(PlayerConnectMessageArgs e)
@@ -156,7 +156,7 @@ namespace HappyFunTimes
 
             if (maxPlayers > 0)
             {
-                int timeoutForDisconnectedPlayerToReconnect = 0;
+                int timeoutForDisconnectedPlayerToReconnect = 15;
                 m_playerManager = new HFTPlayerManager(m_connectionManager.gameServer, gameObject, maxPlayers, timeoutForDisconnectedPlayerToReconnect, GetPrefab);
             }
             else

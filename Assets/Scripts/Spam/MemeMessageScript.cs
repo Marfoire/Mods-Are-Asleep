@@ -5,12 +5,6 @@ using UnityEngine;
 public class MemeMessageScript : MonoBehaviour {
 
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     public void MemeConstructor(string profileName, Sprite profilePicture, Sprite memePicture, PlayerScript ps, Color playerColor)
     {
         GetComponentInChildren<TextMesh>().text = "<color=#" + ColorUtility.ToHtmlStringRGBA(playerColor) + ">" + profileName + "</color>";
@@ -24,13 +18,14 @@ public class MemeMessageScript : MonoBehaviour {
     {
         if (transform.position.y > 22)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         DeleteMessage();
 	}
 }

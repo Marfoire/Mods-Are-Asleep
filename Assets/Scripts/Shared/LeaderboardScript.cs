@@ -9,7 +9,7 @@ public class LeaderboardScript : MonoBehaviour {
 
     void Awake()
     {
-        leaderboardSlots = new GameObject[transform.childCount-1];
+        leaderboardSlots = new GameObject[transform.childCount-2];
         for (int i = 0; i < leaderboardSlots.Length; i++)
         {
             leaderboardSlots[i] = transform.GetChild(i + 1).gameObject;

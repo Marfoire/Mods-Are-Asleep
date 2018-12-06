@@ -318,7 +318,7 @@ Prefab:
     - target: {fileID: 114589250201219426, guid: 634c2e487bd4d2847bb4632173e1eb1d,
         type: 2}
       propertyPath: m_Text
-      value: Start 2
+      value: Vote
       objectReference: {fileID: 0}
     - target: {fileID: 114744855832276482, guid: 634c2e487bd4d2847bb4632173e1eb1d,
         type: 2}
@@ -359,6 +359,81 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 79321495}
   m_Script: {fileID: 11500000, guid: 71227fa83b5f5204abc1914fcb609548, type: 3}
+--- !u!1 &244465846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244465847}
+  - component: {fileID: 244465848}
+  m_Layer: 0
+  m_Name: Login Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &244465847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 244465846}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.56, y: -4.07, z: 0}
+  m_LocalScale: {x: 0.75654304, y: 0.73017406, z: 0.90172}
+  m_Children: []
+  m_Father: {fileID: 755287833}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &244465848
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 244465846}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: aeea89551be33744e8e0fa6db3f729b3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 8, y: 2.5}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &460936855
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +530,82 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1627413448}
   m_Script: {fileID: 11500000, guid: 71227fa83b5f5204abc1914fcb609548, type: 3}
+--- !u!1 &755287831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755287833}
+  - component: {fileID: 755287832}
+  m_Layer: 0
+  m_Name: Backdrop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &755287832
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 755287831}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 1f2ce7b0da5886d47b0765133b31a8e7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.2, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &755287833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 755287831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 244465847}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &964599916
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +907,7 @@ RectTransform:
   - {fileID: 79321496}
   - {fileID: 964599917}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -896,10 +1047,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerArray: []
-  modArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   playerNames:
   - Mayflower
   - drebies
@@ -1042,6 +1189,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: efd2123887030114692aadadf7abeab3, type: 3}
   - {fileID: 21300000, guid: 7ef9c78d6b3ed7a4682f9b41cd93ce0f, type: 3}
   - {fileID: 21300000, guid: f57f66afe4353d243a389cd1c074b0ca, type: 3}
+  playerPrefab: {fileID: 1153877500326260, guid: d3e8cc474b551f740b7f0fba16b6315b,
+    type: 2}
+  playerScores: []
+  timerTimeLimitInSeconds: 5
+  timerTextBox: {fileID: 0}
+  timeIsPaused: 0
+  flashCount: 0
+  modArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   memePictures:
   - {fileID: 21300000, guid: 1686f818160839d47b41f598994d870b, type: 3}
   - {fileID: 21300000, guid: 8b28c91eec3bb7b44ad2afa405fb3931, type: 3}
@@ -1097,16 +1255,30 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 426d4a8119a829e4d9e91080dbe3c4d7, type: 3}
   - {fileID: 21300000, guid: 50e6027207e02fb4a8503eb4b745188c, type: 3}
   - {fileID: 21300000, guid: f53b2ed7f930c8e4c9149ec6b58b31b2, type: 3}
-  playerPrefab: {fileID: 1153877500326260, guid: d3e8cc474b551f740b7f0fba16b6315b,
-    type: 2}
   memePrefabForPlayers: {fileID: 1671600235795916, guid: b9bc18da1bc19ce419fe8a73352883c2,
     type: 2}
   modPrefab: {fileID: 1808704685302782, guid: 8de652d9e6d65bb488244b7704bbac88, type: 2}
   banListObject: {fileID: 0}
   bannedPlayers: []
-  playerScores: []
-  timerTimeLimitInSeconds: 5
-  timerTextBox: {fileID: 0}
+  voteMessagePrefab: {fileID: 1612168931880698, guid: e29ff99f151bfb04080c47df76ece938,
+    type: 2}
+  voteStrings:
+  - super mega ultra epic
+  - Okay, this is epic
+  - I'd buy that for a dollar!
+  - 'This vigorously satisfies me '
+  - nice
+  - If this isn't dank I'm going to scream
+  - Adequate.
+  - omg lol do more please
+  - DANK
+  - If you think this is dankless you are wrong
+  voteRoundMax: 12
+  voteRoundCount: 0
+  votingModerator: {fileID: 0}
+  voteModPrefab: {fileID: 1545276827630774, guid: ca56f142cd454fe4583e9cd3d9c25f25,
+    type: 2}
+  memeDankness: 0
 --- !u!4 &1552405400
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,7 +1462,7 @@ Prefab:
     - target: {fileID: 114589250201219426, guid: 634c2e487bd4d2847bb4632173e1eb1d,
         type: 2}
       propertyPath: m_Text
-      value: Start 1
+      value: Spam
       objectReference: {fileID: 0}
     - target: {fileID: 114589250201219426, guid: 634c2e487bd4d2847bb4632173e1eb1d,
         type: 2}
@@ -1662,5 +1834,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
