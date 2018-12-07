@@ -20,6 +20,17 @@ public class LobbyPlayerList : MonoBehaviour {
     {
         if (ifImResultsList == false)
         {
+            foreach(string s in lobbyListNames)
+            {
+                for(int i = 0; i + 1 <= managerReference.GetComponent<ChatManagerScript>().playerArray.Count; i++)
+                {
+                    if(s != (i + 1) + ". " + "<color=#" + ColorUtility.ToHtmlStringRGBA(managerReference.GetComponent<ChatManagerScript>().playerArray[i].playerColor) + ">" + managerReference.GetComponent<ChatManagerScript>().playerArray[i].name + "</color>")
+                    {
+                        lobbyListNames.Remove(s);
+                    }
+                }
+            }
+            
             for (int i = 0; i + 1 <= managerReference.GetComponent<ChatManagerScript>().playerArray.Count; i++)
             {
                 if (!lobbyListNames.Contains((i + 1) + ". " + "<color=#" + ColorUtility.ToHtmlStringRGBA(managerReference.GetComponent<ChatManagerScript>().playerArray[i].playerColor) + ">" + managerReference.GetComponent<ChatManagerScript>().playerArray[i].name + "</color>"))

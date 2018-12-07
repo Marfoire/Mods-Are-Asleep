@@ -119,7 +119,7 @@ namespace HappyFunTimes
         void StartPlayer(NetPlayer netPlayer, object data)
         {
             m_log.Info("Spawn Player");
-            GameObject gameObject = Instantiate(prefabToSpawnForPlayer);
+            GameObject gameObject = (GameObject)Instantiate(prefabToSpawnForPlayer);
             GetComponent<ChatManagerScript>().AddPlayer(gameObject);
             SpawnInfo spawnInfo = new SpawnInfo();
             spawnInfo.netPlayer = netPlayer;

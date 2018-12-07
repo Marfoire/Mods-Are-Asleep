@@ -21,10 +21,11 @@ public class ModeratorScript : MonoBehaviour {
     private TextMesh onlineStatusText;
     private TextMesh modProfileName;
 
+    public AudioClip onSound;
+    public AudioClip offSound;
 
-
-	// Use this for initialization
-	void Awake() {
+    // Use this for initialization
+    void Awake() {
 
         onlineStatusBlip = transform.GetChild(3).GetComponent<SpriteRenderer>();
         modProfilePicture = transform.GetChild(1).GetComponent<SpriteRenderer>();
@@ -77,6 +78,7 @@ public class ModeratorScript : MonoBehaviour {
             {
                 if (Random.Range(0, 10) >= 3)
                 {
+                    GetComponent<AudioSource>().PlayOneShot(onSound, 1);
                     onlineStatusText.text = "Online";
                     onlineTimeStart = Time.time;
                     onlineTimeInterval = Random.Range(2, 6);
@@ -85,6 +87,7 @@ public class ModeratorScript : MonoBehaviour {
                 }
                 else
                 {
+                    GetComponent<AudioSource>().PlayOneShot(offSound, 1);
                     activityStatus = "Offline";
                     onlineStatusText.text = "Offline";
                     offlineTimeStart = Time.time;
@@ -107,6 +110,7 @@ public class ModeratorScript : MonoBehaviour {
 
             if (Time.time - onlineTimeStart > onlineTimeInterval)//if the delay is up
             {
+                GetComponent<AudioSource>().PlayOneShot(offSound, 1);
                 activityStatus = "Offline";
                 onlineStatusText.text = "Offline";
                 offlineTimeStart = Time.time;

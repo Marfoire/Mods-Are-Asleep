@@ -20,6 +20,7 @@ public class ChatManagerScript : MonoBehaviour {
     public GameObject timerTextBox;
     public bool timeIsPaused;
     public int flashCount;
+    private AudioSource audioSource;
 
     //spam variables
     public ModeratorScript[] modArray;
@@ -39,7 +40,8 @@ public class ChatManagerScript : MonoBehaviour {
     public int memeDankness;
     private List<int> usedMemeIndexes = new List<int>();
     private bool resultsPhase;
-
+    public GameObject countdownText;
+    public bool countdownBool;
     
 
     /// <summary>
@@ -47,6 +49,9 @@ public class ChatManagerScript : MonoBehaviour {
     /// </summary>
 
     void Awake () {
+
+        Screen.SetResolution(1170, 1080, false);
+
 
         DontDestroyOnLoad(this);
         if (FindObjectsOfType(GetType()).Length > 1)
@@ -67,7 +72,7 @@ public class ChatManagerScript : MonoBehaviour {
         if(scene.name == "ChatRoom")
         {
             timer = 0;
-            timerTimeLimitInSeconds = 60;
+            timerTimeLimitInSeconds = 120;
             for(int i = 0; i < GameObject.FindGameObjectsWithTag("Dynamic Text").Length; i++)
             {
                 if (GameObject.FindGameObjectsWithTag("Dynamic Text")[i].name == "Timer")
@@ -119,6 +124,10 @@ public class ChatManagerScript : MonoBehaviour {
                 {
                     timerTextBox = GameObject.FindGameObjectsWithTag("Dynamic Text")[i];
                 }
+                if (GameObject.FindGameObjectsWithTag("Dynamic Text")[i].name == "CountdownText")
+                {
+                    countdownText = GameObject.FindGameObjectsWithTag("Dynamic Text")[i];
+                }
             }
 
             GameObject voteMod = Instantiate(voteModPrefab, new Vector3(6, 13.2f), Quaternion.identity) as GameObject;
@@ -141,6 +150,12 @@ public class ChatManagerScript : MonoBehaviour {
             script.VoteModConstructor(playerNames[randomNameValue], profilePictures[randomPictureValue]);
 
             RandomizeSpotlightMeme();
+
+            countdownBool = true;
+            timeIsPaused = true;
+
+            StartCoroutine(Countdown());
+
         }
     }
 
@@ -208,25 +223,41 @@ public class ChatManagerScript : MonoBehaviour {
     {
         timer += Time.deltaTime;
         timeLeft = timerTimeLimitInSeconds - timer;
-        string minutes = Mathf.Floor((timeLeft) / 60).ToString("00");
-        string seconds = Mathf.Floor(((timeLeft) % 60)).ToString("00");
+        string minutes = Mathf.Clamp(Mathf.Floor((timeLeft) / 60), 0,3).ToString("00");
+        string seconds = Mathf.Clamp(Mathf.Floor((timeLeft) % 60), 0,59).ToString("00");
 
         timerTextBox.GetComponent<TextMesh>().text = minutes + ":" + seconds;
 
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true;
+
+
+        if (timeLeft <= 10 && !audioSource.isPlaying)
+        {
+
+            audioSource.Play();
+        }
+
+
         if (timeLeft <= 0)
         {
+            
             for(int i = 0; modArray.Length > i; i++){
-                if(playerNames.Contains(null) == true)
+               /* if (playerNames.Contains(modArray[i].transform.GetChild(0).GetComponent<TextMesh>().text) == false)
                 {
-                    playerNames[Array.FindLastIndex(playerNames, null)] = modArray[i].transform.GetChild(0).GetComponent<TextMesh>().text;
-                }
+                    print("name");
+                    playerNames[Array.IndexOf(playerNames, )] = modArray[i].transform.GetChild(0).GetComponent<TextMesh>().text;
+                }*/
 
-                if (profilePictures.Contains(null) == true)
+                if (profilePictures.Contains(modArray[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite) == false)
                 {
-                    profilePictures[Array.FindLastIndex(profilePictures, null)] = modArray[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
+                    profilePictures[(Int32.Parse(modArray[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite.name.Trim('P')))-1] = modArray[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
                 }
-
+                
             }
+
+            audioSource.Stop();
+
             SceneManager.LoadScene("ResultScreen", LoadSceneMode.Single);
         }
 
@@ -262,6 +293,40 @@ public class ChatManagerScript : MonoBehaviour {
     /// <summary>
     /// /////////////////////////////// VOTE GAME MOD FUNCTIONS /////////////////////////////////
     /// </summary> 
+    /// 
+
+    IEnumerator Countdown()
+    {
+        countdownText.GetComponent<TextMesh>().color = new Color(255, 0, 0, 255);
+        countdownText.GetComponent<TextMesh>().text = "5";
+
+        yield return new WaitForSeconds(1);
+
+        countdownText.GetComponent<TextMesh>().text = "4";
+
+        yield return new WaitForSeconds(1);
+
+        countdownText.GetComponent<TextMesh>().text = "3";
+
+        yield return new WaitForSeconds(1);
+
+        countdownText.GetComponent<TextMesh>().text = "2";
+
+        yield return new WaitForSeconds(1);
+
+        countdownText.GetComponent<TextMesh>().text = "1";
+
+        yield return new WaitForSeconds(1);
+
+        countdownText.GetComponent<TextMesh>().text = "GO!";
+
+        yield return new WaitForSeconds(1);
+
+        timeIsPaused = false;
+        countdownBool = false;
+        countdownText.GetComponent<TextMesh>().color = new Color(255, 10, 0, 0);
+
+    }
 
     public void RandomizeSpotlightMeme()
     {
@@ -291,8 +356,20 @@ public class ChatManagerScript : MonoBehaviour {
         {
             timer += Time.deltaTime;
             timeLeft = timerTimeLimitInSeconds - timer;
-            string seconds = Mathf.Clamp(Mathf.Floor(((timeLeft) % 60)), 0, 10).ToString("00");
+            string seconds = Mathf.Clamp(Mathf.Floor((timeLeft) % 60), 0, 10).ToString("0");
             timerTextBox.GetComponent<TextMesh>().text = seconds;
+
+
+            audioSource = GetComponent<AudioSource>();
+            audioSource.loop = true;
+
+
+            if (timeLeft <= 10 && timeIsPaused == false && !audioSource.isPlaying)
+            {
+
+                audioSource.Play();
+            }
+
 
             if (timeLeft <= 0)
             {
@@ -302,6 +379,7 @@ public class ChatManagerScript : MonoBehaviour {
 
             if (voteRoundCount >= voteRoundMax)
             {
+                audioSource.Stop();
                 usedMemeIndexes.Clear();
                 SceneManager.LoadScene("ResultScreen", LoadSceneMode.Single);
             }
@@ -310,7 +388,7 @@ public class ChatManagerScript : MonoBehaviour {
 
     public void VoteResults()
     {
-        if(timeIsPaused == true && resultsPhase == false)
+        if(timeIsPaused == true && resultsPhase == false && countdownBool == false)
         {
             memeDankness = UnityEngine.Random.Range(0,2);
             if(memeDankness == 1)
@@ -343,6 +421,7 @@ public class ChatManagerScript : MonoBehaviour {
             {
                 stamp = GameObject.FindGameObjectsWithTag("SpotlightMeme")[i];
                 stamp.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+                stamp.GetComponent<AudioSource>().PlayOneShot(stamp.GetComponent<AudioSource>().clip, 1);
             }
         }
 
@@ -377,6 +456,7 @@ public class ChatManagerScript : MonoBehaviour {
             {
                 stamp = GameObject.FindGameObjectsWithTag("SpotlightMeme")[i];
                 stamp.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+                stamp.GetComponent<AudioSource>().PlayOneShot(stamp.GetComponent<AudioSource>().clip, 1);
             }
         }
 

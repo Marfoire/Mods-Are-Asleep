@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour {
     public ChatManagerScript managerScriptReference;           
     private HFTInput myHFTInput;
     public Color playerColor;
+    private HFTSoundPlayer m_soundPlayer;
 
     //variables for spam game mode
     public GameObject memeMessagePrefab;
@@ -32,6 +33,7 @@ public class PlayerScript : MonoBehaviour {
     public void PlayerConstructor(/*string givenName,*/ Sprite givenPicture, GameObject memefab, GameObject votefab, ModeratorScript[] mods, ChatManagerScript cm)
     {
         DontDestroyOnLoad(this);
+        m_soundPlayer = GetComponent<HFTSoundPlayer>();
         banDuration = 5;
         amIBanned = false;        
         playerProfilePicture = givenPicture;
@@ -46,8 +48,7 @@ public class PlayerScript : MonoBehaviour {
         //playerName = givenName;
         //gameObject.name = givenName;
 
-        playerName = GetComponent<HFTGamepad>().playerName;
-        gameObject.name = GetComponent<HFTGamepad>().playerName;
+        
     }
 
     /// <summary>
@@ -61,6 +62,7 @@ public class PlayerScript : MonoBehaviour {
             if (chatModerators[i].activityStatus == "Online")
             {
                 amIBanned = true;
+                m_soundPlayer.PlaySound("Ban Sound");
                 banTimeStart = Time.time;
             }
         }
@@ -72,11 +74,12 @@ public class PlayerScript : MonoBehaviour {
         {
             if (myHFTInput.GetButtonDown("Fire1"))
             {
-                playerScore++;
+                playerScore++;           
                 managerScriptReference.ScrollMessages();
                 GameObject memeMessage = Instantiate(memeMessagePrefab) as GameObject;
                 MemeMessageScript messageScript = memeMessage.GetComponent<MemeMessageScript>();
                 messageScript.MemeConstructor(playerName, playerProfilePicture, managerScriptReference.memePictures[Random.Range(0, managerScriptReference.memePictures.Length)], this, playerColor);
+                m_soundPlayer.PlaySound("Post Sound");
                 CheckIfIShouldBeBanned();
             }
         }
@@ -109,6 +112,7 @@ public class PlayerScript : MonoBehaviour {
                 GameObject voteMessage = Instantiate(voteMessagePrefab) as GameObject;
                 VoteMessageScript messageScript = voteMessage.GetComponent<VoteMessageScript>();
                 messageScript.VoteConstructor(playerName, playerProfilePicture, managerScriptReference.voteStrings[Random.Range(0, managerScriptReference.voteStrings.Length)], this, playerColor);
+                m_soundPlayer.PlaySound("Post Sound");
             }
         }
     }
@@ -135,7 +139,8 @@ public class PlayerScript : MonoBehaviour {
             playerScore = 0;
             banDuration = 5;
         }
-
+        playerName = GetComponent<HFTGamepad>().playerName;
+        gameObject.name = GetComponent<HFTGamepad>().playerName;
         /*if (GetComponent<HFTGamepad>().playerName != playerName && GetComponent<HFTGamepad>().playerName != null)
         {
             playerName = GetComponent<HFTGamepad>().playerName;

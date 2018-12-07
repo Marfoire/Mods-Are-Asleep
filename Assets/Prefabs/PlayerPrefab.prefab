@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114623489372510330}
   - component: {fileID: 114652450980121994}
   - component: {fileID: 114857925587065728}
+  - component: {fileID: 114343301183407100}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -42,6 +43,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114343301183407100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1153877500326260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ca5391eb348422fb5e3f060f9736a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114623489372510330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,9 +69,12 @@ MonoBehaviour:
   playerProfilePicture: {fileID: 0}
   playerScore: 0
   managerScriptReference: {fileID: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
   memeMessagePrefab: {fileID: 0}
-  chatModerators: []
   amIBanned: 0
+  chatModerators: []
+  voteMessagePrefab: {fileID: 0}
+  votedYes: 0
 --- !u!114 &114652450980121994
 MonoBehaviour:
   m_ObjectHideFlags: 1
